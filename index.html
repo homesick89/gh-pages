@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+		<!--
+	 ??? ??     ??????      ???? ?????   ?????? 
+	???? ???   ????  ???   ??????? ???   ??   ? 
+	????????   ????  ???   ???    ????   ????   
+	??? ???    ???   ???   ???    ???    ???  ? 
+	????????   ? ???????   ????   ????   ???????
+	 ? ?????   ? ??????    ? ??   ?  ?   ?? ?? ?
+	 ? ??? ?     ? ? ??    ?  ?  ?   ?    ? ?  ?
+        . ?_.?::__:? ?,-?"-"._     ?? |7       ,    ?_,.__
+   _.___ _?_<_>`!?_`.`-.    /  ?     ?_._ ?    `?_ ,_/  '  '-._.---.-.__
+>.{     "?" `-==,',._\{ ?  / {)  ?    / _ ">_,-' `?               mt-2_
+  \_.:--.       `._ )`^-. "'       , [_/(                       __,/-'
+ '"'     \         "    _L        oD_,--'                )     /. (|
+          |  ()       ,'          _)_.\\._<> =)             _,' /  '
+          `.         /           [_/_'` `"(                <'}  )
+           \\    .-. )           /   `-'"..' `:.#          _)  '
+    `        \  (  `(           /         `:\  > \  ,-^.  /' '
+              `._,   ""         |           \`'   \|   ?_)  {\
+                 `=.---.        `._._       ,'     "`  |' ,- '.
+                   |    `-._         |     /          `:`<_|h--._
+                   (        >        .     | ,          `=.__.`-'\
+                    `.     /         |     |{|              ,-.,\     .
+                     |   ,'           \   / `'            ,"     \
+                     |  /              |_'                |  __  
+		  ??????     ???    ??????      ?? ???'89   
+		???    ?    ????   ???? ??      ?????       
+		? ????      ????   ???    ?    ??????       
+		  ?   ???   ????   ???? ????   ??? ??       
+		?????????   ????   ? ????? ?   ???? ??      
+		? ??? ? ?   ??     ? ?? ?  ?   ? ?? ??      
+		? ??  ? ?    ? ?     ?  ?      ? ?? ??      
+		?  ?  ?      ? ?   ?           ? ?? ?       
+		      ?      ?     ? ?         ?  ?         (c) 2016
+		           ?             
+	-->
+	<head>
+		<title>HomeSick - Environment Standards EP</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+			
+			
+				<script type="text/javascript">
+				<!--
+				if (screen.width <= 800) {
+				   window.location = "mobile.html";
+				 }
+				 //-->
+				</script>	
+			
+		<style>
+@font-face {
+    font-family: slant;
+    src: url(fonts/bold.ttf);
+    font-weight: bold;
+}
+			
+			body {
+				font-family: slant;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				font-family: slant;
+				font-size: 25px;
+				color: #fff;
+				position: absolute;
+				top: 20px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			
+			#bottom {
+				position: absolute;
+				font-family: slant;
+				padding: 25px;
+				
+				font-size: 45px;
+				width: 97%;
+				text-align: center;
+				bottom: 34px;
+				}
+			a {
+			color: white;
+			cursor: pointer;
+			text-decoration: none;
+			}
+			<!--#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer } -->
+			
+		</style>
+	</head>
+
+	<body>
+	<div id=info> <font size="45px"> Environment<br> Standards </font> <br> OUT NOW <br></div>
+	<div id=bottom> 
+	<a target="blank" href="https://soundcloud.com/foreverhomesick/sets/homesick-environment-standards">STREAM -</a> 
+	<a target="blank" href="http://www.junodownload.com/products/homesick-environment-standards/3132504-02/">BUY -</a> 
+	<a target="blank" href="https://www.youtube.com/watch?v=1X3z_Ky9UI4">WATCH</a>	<br> 
+	<a target="blank" href="http://homesick89.tumblr.com/"> <font size="4"> continue to homesick89.com </font> </a> </div>
+
+	
+		<script src="build/three.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+
+		<script>
+
+			var container;
+
+			var camera, scene, renderer;
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+
+			init();
+			animate();
+
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 250;
+				
+								var textureCube = new THREE.CubeTextureLoader()
+					.setPath( 'textures/cube/envstd/')
+					.load( [ 'untitled.jpg', 'untitled.jpg', 'untitled.jpg', 'untitled.jpg', 'untitled.jpg', 'untitled.jpg' ] );
+
+			
+			
+
+				// scene
+
+				scene = new THREE.Scene();
+				scene.background = textureCube;
+				var ambient = new THREE.AmbientLight( 0x000000 );
+				scene.add( ambient );
+
+				var directionalLight = new THREE.DirectionalLight( 0x000000 );
+				directionalLight.position.set( 0, 1, 1 );
+				scene.add( directionalLight );
+				
+				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+				directionalLight.position.set( 2, 2, -2 );
+				scene.add( directionalLight );
+
+				// texture
+
+				var manager = new THREE.LoadingManager();
+				manager.onProgress = function ( item, loaded, total ) {
+
+					console.log( item, loaded, total );
+
+				};
+
+				var texture = new THREE.Texture();
+
+				var onProgress = function ( xhr ) {
+					if ( xhr.lengthComputable ) {
+						var percentComplete = xhr.loaded / xhr.total * 100;
+						console.log( Math.round(percentComplete, 2) + '% downloaded' );
+					}
+				};
+
+				var onError = function ( xhr ) {
+				};
+
+
+				var loader = new THREE.ImageLoader( manager );
+				loader.load( 'obj/helmet/helmet.jpg', function ( image ) {
+
+					texture.image = image;
+					texture.needsUpdate = true;
+
+				} );
+
+				// model
+
+				var loader = new THREE.OBJLoader( manager );
+				loader.load( 'obj/helmet/helmet.obj', function ( object ) {
+
+					object.traverse( function ( child ) {
+
+						if ( child instanceof THREE.Mesh ) {
+
+							child.material.map = texture;
+
+						}
+
+					} );
+
+					object.position.y = - 95;
+					object.rotateY(20.5);
+					
+					scene.add( object );
+					
+				}, onProgress, onError );
+				
+				
+				
+				//
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+				
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+			
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = ( event.clientX - windowHalfX ) / 2;
+				mouseY = ( event.clientY - windowHalfY ) / 2;
+
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+			
+			}
+
+			function render() {
+				var timer = Date.now() * 0.0005;
+
+				camera.position.x = Math.cos( timer ) * 10;
+				camera.position.x = 234
+				camera.position.y = .8;
+				camera.position.z = Math.sin( timer ) * 50;
+				camera.position.y += ( - mouseY - camera.position.y ) * .05;
+				
+				
+
+				
+				
+				camera.lookAt( scene.position );
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>
